@@ -22,5 +22,5 @@ export function middleware(request) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ['/admin-desa-salamrejo-2026/:path*'],
+  matcher: ['/admin-desa-salamrejo-2026', '/admin-desa-salamrejo-2026/:path*'],
 };
