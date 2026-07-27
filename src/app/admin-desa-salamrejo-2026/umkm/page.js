@@ -18,23 +18,36 @@ export default function AdminPotensiDesa() {
 
     // Validate file type
     if (!file.type.startsWith('image/')) {
-      alert('Hanya file gambar yang diizinkan (JPG, PNG, WebP)');
+      alert('Hanya file gambar yang diperbolehkan!');
       return;
     }
 
-    // Validate file size (max 2MB for localStorage)
-    if (file.size > 2 * 1024 * 1024) {
-      alert('Ukuran gambar terlalu besar. Maksimal 2MB.');
-      return;
-    }
+    setUploading(true);
 
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      const dataUrl = ev.target.result;
-      setForm({ ...form, gambar: dataUrl });
-      setPreviewImg(dataUrl);
-    };
-    reader.readAsDataURL(file);
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+      
+      if (response.ok && data.success) {
+        setForm({ ...form, gambar: data.url });
+        setPreviewImg(data.url);
+      } else {
+        alert(data.error || 'Gagal mengunggah gambar.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Terjadi kesalahan saat mengunggah gambar.');
+    } finally {
+      setUploading(false);
+      if (fileRef.current) fileRef.current.value = '';
+    }
   };
 
   const handleSubmit = (e) => {
@@ -103,11 +116,17 @@ export default function AdminPotensiDesa() {
                   }}
                     onClick={() => fileRef.current?.click()}
                   >
-                    {!previewImg && (
+                    {!previewImg && !uploading && (
                       <div style={{ textAlign: 'center', color: 'var(--desa-muted)' }}>
-                        <div style={{ fontSize: 32, marginBottom: 4 }}>{'\u{1F4F7}'}</div>
+                        <div style={{ fontSize: 32, marginBottom: 4 }}>{'📸'}</div>
                         <div style={{ fontSize: 12, fontWeight: 600 }}>Klik untuk upload</div>
-                        <div style={{ fontSize: 10, opacity: 0.7 }}>Maks. 2MB</div>
+                        <div style={{ fontSize: 10, opacity: 0.7 }}>Maks. 1MB</div>
+                      </div>
+                    )}
+                    {uploading && (
+                      <div style={{ textAlign: 'center', color: 'var(--desa-gold)' }}>
+                        <span style={{ display: 'inline-block', animation: 'spin 1s linear infinite' }}>⏳</span>
+                        <div style={{ fontSize: 12, fontWeight: 600, marginTop: 4 }}>Mengunggah...</div>
                       </div>
                     )}
                   </div>
