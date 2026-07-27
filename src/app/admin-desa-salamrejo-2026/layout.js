@@ -4,22 +4,22 @@ import { adminHref } from '@/lib/adminPath';
 import { usePathname, useRouter } from 'next/navigation';
 
 const sidebarMenu = [
-  { icon: '', label: 'Dashboard', href: adminHref('') },
-  { icon: '️', label: 'Pengaturan Umum', href: adminHref('/pengaturan') },
-  { icon: '👥', label: 'Aparatur Desa', href: adminHref('/aparatur') },
-  { icon: '👨‍💼', label: 'Riwayat Kades', href: adminHref('/kades') },
-  { icon: '🏘️', label: 'RT & RW', href: adminHref('/rt-rw') },
-  { icon: '️', label: 'Kelembagaan', href: adminHref('/kelembagaan') },
-  { icon: '', label: 'Pengumuman', href: adminHref('/pengumuman') },
-  { icon: '', label: 'Agenda', href: adminHref('/agenda') },
-  { icon: '', label: 'Potensi Desa', href: adminHref('/umkm') },
-  { icon: '', label: 'Posyandu', href: adminHref('/posyandu') },
-  { icon: '️', label: 'Galeri', href: adminHref('/galeri') },
-  { icon: '', label: 'Layanan Surat', href: adminHref('/layanan') },
-  { icon: '', label: 'Pembangunan', href: adminHref('/pembangunan') },
-  { icon: '️', label: 'Hero Banner', href: adminHref('/hero') },
-  { icon: '🖼️', label: 'Gambar Struktur', href: adminHref('/struktur-chart') },
-  { icon: '💰', label: 'Dana Desa', href: adminHref('/dana-desa') },
+  { label: 'Dashboard', href: adminHref('') },
+  { label: 'Pengaturan Umum', href: adminHref('/pengaturan') },
+  { label: 'Aparatur Desa', href: adminHref('/aparatur') },
+  { label: 'Riwayat Kades', href: adminHref('/kades') },
+  { label: 'RT & RW', href: adminHref('/rt-rw') },
+  { label: 'Kelembagaan', href: adminHref('/kelembagaan') },
+  { label: 'Pengumuman', href: adminHref('/pengumuman') },
+  { label: 'Agenda', href: adminHref('/agenda') },
+  { label: 'Potensi Desa', href: adminHref('/umkm') },
+  { label: 'Posyandu', href: adminHref('/posyandu') },
+  { label: 'Galeri', href: adminHref('/galeri') },
+  { label: 'Layanan Surat', href: adminHref('/layanan') },
+  { label: 'Pembangunan', href: adminHref('/pembangunan') },
+  { label: 'Hero Banner', href: adminHref('/hero') },
+  { label: 'Gambar Struktur', href: adminHref('/struktur-chart') },
+  { label: 'Dana Desa', href: adminHref('/dana-desa') },
 ];
 
 export default function AdminLayout({ children }) {
@@ -42,7 +42,7 @@ export default function AdminLayout({ children }) {
       {/* Sidebar */}
       <aside className="admin-sidebar">
         <div className="admin-sidebar__logo">
-          <Link href={adminHref()}>️ Admin Desa</Link>
+          <Link href={adminHref()}>Admin Desa</Link>
         </div>
         <nav className="admin-sidebar__nav">
           {sidebarMenu.map((item) => (
@@ -51,7 +51,6 @@ export default function AdminLayout({ children }) {
               href={item.href}
               className={`admin-sidebar__link ${pathname === item.href ? 'admin-sidebar__link--active' : ''}`}
             >
-              <span>{item.icon}</span>
               {item.label}
             </Link>
           ))}
@@ -61,7 +60,7 @@ export default function AdminLayout({ children }) {
               className="admin-sidebar__link" 
               style={{ width: '100%', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', color: '#E74C3C', fontWeight: 600 }}
             >
-              🚪 Keluar (Logout)
+              Keluar (Logout)
             </button>
             <Link href="/" className="admin-sidebar__link" style={{ color: 'rgba(255,255,255,0.5)', marginTop: 8 }}>
               ← Kembali ke Website
