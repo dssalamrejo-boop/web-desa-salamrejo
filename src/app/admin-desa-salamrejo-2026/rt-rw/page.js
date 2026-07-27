@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useDataStore } from '@/hooks/useDataStore';
+import { DEFAULTS, saveData } from '@/lib/dataStore';
 
 export default function AdminRtRw() {
   const [data, setData] = useDataStore('rtRw');
@@ -41,9 +42,20 @@ export default function AdminRtRw() {
             Kelola struktur kepengurusan RT, RW, dan Dukuh di Desa Salamrejo
           </p>
         </div>
-        <button className="admin-btn admin-btn--primary" onClick={() => { setShowForm(!showForm); setEditItem(null); setForm({ dukuh: '', rw: '', rt: '', ketua: '', kontak: '' }); }}>
-          {showForm ? '❌ Tutup Form' : '➕ Tambah Data RT/RW'}
-        </button>
+        <div style={{ display: 'flex', gap: 10 }}>
+          <button className="admin-btn" style={{ background: 'var(--desa-paper)', color: 'var(--desa-ink)' }} onClick={() => {
+            if (confirm('Yakin ingin mereset semua data RT/RW ke nama-nama asli bawaan sistem?')) {
+              saveData('rtRw', DEFAULTS.rtRw);
+              setData(DEFAULTS.rtRw);
+              alert('Data RT/RW berhasil direset ke bawaan sistem.');
+            }
+          }}>
+            🔄 Reset Data Asli
+          </button>
+          <button className="admin-btn admin-btn--primary" onClick={() => { setShowForm(!showForm); setEditItem(null); setForm({ dukuh: '', rw: '', rt: '', ketua: '', kontak: '' }); }}>
+            {showForm ? '❌ Tutup Form' : '➕ Tambah Data RT/RW'}
+          </button>
+        </div>
       </div>
 
       {showForm && (

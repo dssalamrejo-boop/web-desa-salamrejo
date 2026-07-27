@@ -39,10 +39,23 @@ const DEFAULTS = {
   ],
 
   rtRw: [
-    { id: 1, wilayah: 'Dusun Salamrejo', rt: '01', rw: '01', ketua: 'Bapak A' },
-    { id: 2, wilayah: 'Dusun Salamrejo', rt: '02', rw: '01', ketua: 'Bapak B' },
-    { id: 3, wilayah: 'Dusun Kedungrejo', rt: '01', rw: '02', ketua: 'Bapak C' },
-    { id: 4, wilayah: 'Dusun Kedungrejo', rt: '02', rw: '02', ketua: 'Bapak D' },
+    { id: 1, dukuh: 'Dusun Salamrejo', rw: '01', rt: '-', ketua: 'SUYANTO', kontak: '' },
+    { id: 2, dukuh: 'Dusun Salamrejo', rw: '01', rt: '01', ketua: 'SUCIPTO', kontak: '' },
+    { id: 3, dukuh: 'Dusun Salamrejo', rw: '01', rt: '02', ketua: 'ISNANTO', kontak: '' },
+    { id: 4, dukuh: 'Dusun Salamrejo', rw: '01', rt: '03', ketua: 'AGUS SLAMET', kontak: '' },
+    { id: 5, dukuh: 'Dusun Salamrejo', rw: '01', rt: '04', ketua: 'SUTAR WIYANTO', kontak: '' },
+
+    { id: 6, dukuh: 'Dusun Salamrejo', rw: '02', rt: '-', ketua: 'MUKMIN', kontak: '' },
+    { id: 7, dukuh: 'Dusun Salamrejo', rw: '02', rt: '01', ketua: 'HARTOKO', kontak: '' },
+    { id: 8, dukuh: 'Dusun Salamrejo', rw: '02', rt: '02', ketua: 'MUHAIMIN', kontak: '' },
+    { id: 9, dukuh: 'Dusun Salamrejo', rw: '02', rt: '03', ketua: 'SUGENG PURNOMO', kontak: '' },
+    { id: 10, dukuh: 'Dusun Salamrejo', rw: '02', rt: '04', ketua: 'SUGENG ADIONO', kontak: '' },
+
+    { id: 11, dukuh: 'Dusun Kedungrejo', rw: '01', rt: '-', ketua: 'DAMAN ISDIANTO', kontak: '' },
+    { id: 12, dukuh: 'Dusun Kedungrejo', rw: '01', rt: '01', ketua: 'M. ZAINAL ABIDIN', kontak: '' },
+    { id: 13, dukuh: 'Dusun Kedungrejo', rw: '01', rt: '02', ketua: 'SUTIKNO', kontak: '' },
+    { id: 14, dukuh: 'Dusun Kedungrejo', rw: '01', rt: '03', ketua: 'ZAINAL ABIDIN', kontak: '' },
+    { id: 15, dukuh: 'Dusun Kedungrejo', rw: '01', rt: '04', ketua: 'SUGITO', kontak: '' },
   ],
 
   lembaga: [

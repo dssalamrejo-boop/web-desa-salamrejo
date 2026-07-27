@@ -45,7 +45,11 @@ export default function PemerintahanPage() {
       };
       rwData.push(rwGroup);
     }
-    rwGroup.rt.push({ label: `RT ${item.rt} RW ${item.rw}`, ketua: item.ketua });
+    if (!item.rt || item.rt === '-' || item.rt === '') {
+      rwGroup.ketua = item.ketua;
+    } else {
+      rwGroup.rt.push({ label: `RT ${item.rt} RW ${item.rw}`, ketua: item.ketua });
+    }
   });
 
   // Map Kelembagaan data
