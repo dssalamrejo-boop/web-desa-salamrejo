@@ -249,7 +249,7 @@ export default function HomePage() {
                 <div className="desa-post-card__body">
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
                     <span style={{ fontSize: 11, fontWeight: 800, color: 'var(--desa-gold)', letterSpacing: 1 }}>
-                      {item.category.toUpperCase()}
+                      {(item.category || 'PENGUMUMAN').toUpperCase()}
                     </span>
                     <span style={{ fontSize: 12, color: 'var(--desa-muted)' }}>{item.date}</span>
                   </div>

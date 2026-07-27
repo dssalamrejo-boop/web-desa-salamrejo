@@ -13,7 +13,7 @@ export default function PemerintahanPage() {
   // Helper to map and find aparatur by role keywords
   const getAparatur = (roleKeywords, defaultColor) => {
     const item = (aparaturData || []).find(a => 
-      roleKeywords.some(keyword => a.jabatan.toLowerCase().includes(keyword.toLowerCase()))
+      roleKeywords.some(keyword => (a.jabatan || '').toLowerCase().includes(keyword.toLowerCase()))
     );
     return item ? { role: item.jabatan, name: item.nama, badgeColor: defaultColor, desc: '' } : null;
   };
@@ -32,13 +32,14 @@ export default function PemerintahanPage() {
   // Map RT/RW data
   const rwData = [];
   (rtRwData || []).forEach(item => {
-    const title = `RW ${item.rw} ${item.dukuh}`;
+    const areaName = item.dukuh || item.wilayah || '';
+    const title = `RW ${item.rw} ${areaName}`;
     let rwGroup = rwData.find(g => g.title === title);
     if (!rwGroup) {
       rwGroup = {
         title, 
         badge: `RW ${item.rw}`, 
-        badgeBg: item.dukuh.toLowerCase().includes('salamrejo') ? 'var(--desa-gold)' : 'var(--desa-green)',
+        badgeBg: areaName.toLowerCase().includes('salamrejo') ? 'var(--desa-gold)' : 'var(--desa-green)',
         ketua: '-', // RW head not explicitly in data format, defaulting
         rt: []
       };
