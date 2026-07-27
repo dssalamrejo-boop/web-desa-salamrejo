@@ -29,8 +29,10 @@
 
 /* ---- Reset & Base ---- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+html { scroll-behavior: smooth; scroll-padding-top: 100px; overflow-x: hidden; }
 body {
+  overflow-x: hidden;
+  width: 100%;
   color: var(--desa-ink);
   font-family: var(--desa-sans);
   background: var(--desa-bg);
@@ -882,6 +884,8 @@ button { cursor: pointer; font-family: inherit; }
   border-radius: var(--desa-radius-sm);
   padding: 24px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .admin-stat-card {
   background: #FFF;
@@ -1109,7 +1113,18 @@ button { cursor: pointer; font-family: inherit; }
     transition: transform 0.3s ease;
   }
   .admin-sidebar--open { transform: translateX(0); }
-  .admin-main { margin-left: 0; padding: 20px; }
+  .admin-main { margin-left: 0; padding: 20px; width: 100vw; overflow-x: hidden; }
+  
+  /* Hide elements that break mobile layout */
+  .desa-hero-video-preview { display: none; }
+  
+  /* Make admin table scrollable on mobile */
+  .admin-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -20px;
+    padding: 0 20px;
+  }
 }
 
 @media (max-width: 480px) {
