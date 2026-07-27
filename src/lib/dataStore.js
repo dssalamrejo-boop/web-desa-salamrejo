@@ -100,7 +100,7 @@ const DEFAULTS = {
 
   posyanduKaderPos: [
     { id: 1, pos: 'Pos 1 — Balaidusun Salamrejo', lokasi: 'Balaidusun Salamrejo', kader: 'Sri W., Mala, Ratna, Endra, Suprihaten' },
-    { id: 2, pos: 'Pos 2 — Balaidesa Salamrejo', lokasi: 'Balaidesa Salamrejo', kader: 'Astutik, Hindana, Tika, Dewi, Ti\\'ah' },
+    { id: 2, pos: 'Pos 2 — Balaidesa Salamrejo', lokasi: 'Balaidesa Salamrejo', kader: "Astutik, Hindana, Tika, Dewi, Ti'ah" },
     { id: 3, pos: 'Pos 3 — Rumah Bp. Slamet', lokasi: 'Rumah Bp. Slamet', kader: 'Rindang, Semiati, Enik, Tri Y., Pipik' },
     { id: 4, pos: 'Pos 4 — Rumah Bp. Misirawan', lokasi: 'Rumah Bp. Misirawan', kader: 'Erna, Sulikah, Ana, Liana, Wiyanti' },
   ],
