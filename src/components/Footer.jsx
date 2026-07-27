@@ -56,8 +56,8 @@ export default function Footer() {
           {/* Informasi */}
           <div>
             <div className="desa-footer__heading">Informasi</div>
-            <Link href="/pengumuman" className="desa-footer__link">Pengumuman</Link>
-            <Link href="/agenda" className="desa-footer__link">Agenda</Link>
+            <Link href="/#pengumuman" className="desa-footer__link">Pengumuman</Link>
+            <Link href="/#agenda" className="desa-footer__link">Agenda</Link>
             <Link href="/galeri" className="desa-footer__link">Galeri</Link>
             <Link href="/layanan" className="desa-footer__link">Layanan Surat</Link>
             <Link href="/dana-desa" className="desa-footer__link">Dana Desa</Link>

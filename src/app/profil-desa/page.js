@@ -263,7 +263,7 @@ export default function ProfilDesaPage() {
                   Secara geografis dan administratif, Desa Salamrejo terbagi menjadi 2 Dusun utama, yaitu <strong>Dusun Salamrejo</strong> dan <strong>Dusun Kedungrejo</strong>.
                 </p>
                 <p style={{ color: 'var(--desa-muted)', lineHeight: 1.85, fontSize: 15, margin: 0 }}>
-                  Sebelum disahkannya UU No. 5 Tahun 1979, Pemerintahan Desa Salamrejo masih memakai tradisi kuno dengan sebutan terhadap petugas desa seperti Lurah, Carik, Kamituwo, Kebayan, Jogotirto, Jogoboyo dan Modin. Pasca regulasi tersebut dan UU RI Nomor 6 Tahun 2014, sebutan diseragamkan secara nasional menjadi Kepala Desa, Sekretaris Desa (PNS), serta kehadiran lembaga seperti Badan Permusyawaratan Desa (BPD).
+                  Sebelum disahkannya UU No. 5 Tahun 1979, Pemerintahan Desa Salamrejo masih menggunakan tradisi kuno dengan sebutan terhadap petugas desa seperti Lurah, Carik, Kamituwo, Kebayan, Jogotirto, Jogoboyo dan Modin. Pasca regulasi tersebut dan UU RI Nomor 6 Tahun 2014, sebutan diseragamkan secara nasional menjadi Kepala Desa, Sekretaris Desa (PNS), serta kehadiran lembaga seperti Badan Permusyawaratan Desa (BPD).
                 </p>
               </div>
 
@@ -403,7 +403,7 @@ export default function ProfilDesaPage() {
         <section id="padukuhan" className="desa-section">
           <div className="desa-section__head">
             <span className="desa-section__label">Pembagian Wilayah</span>
-            <h2 className="desa-section__title">Profil 2 Dusun Desa Salamrejo</h2>
+            <h2 className="desa-section__title">Profil Dusun</h2>
             <p className="desa-section__desc">
               Desa Salamrejo terbagi atas 2 dusun yang saling melengkapi dalam pertumbuhan ekonomi dan sosial kemasyarakatan.
             </p>
@@ -459,6 +459,17 @@ export default function ProfilDesaPage() {
                 </li>
               </ul>
             </div>
+          </div>
+        </section>
+
+        {/* Lembaga Kemasyarakatan Desa */}
+        <section id="lembaga" className="desa-section">
+          <div className="desa-section__head">
+            <span className="desa-section__label">Kelembagaan</span>
+            <h2 className="desa-section__title">Lembaga Kemasyarakatan Desa</h2>
+            <p className="desa-section__desc" style={{ maxWidth: 800 }}>
+              Lembaga atau institusi desa merupakan wadah untuk mengemban tugas dan fungsi pemerintahan desa dalam rangka memberikan pelayanan, pemberdayaan, serta meningkatkan kesejahteraan masyarakat Desa Salamrejo.
+            </p>
           </div>
         </section>
 

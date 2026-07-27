@@ -126,7 +126,7 @@ export default function PosyanduPage() {
                   {misi.num}
                 </div>
                 <div>
-                  <h4 style={{ fontSize: 16, fontWeight: 700, color: 'var(--desa-ink)', margin: '0 0 8px' }}>{misi.title}</h4>
+                  <h4 style={{ fontSize: 16, fontWeight: 700, color: 'var(--desa-ink)', margin: '0 0 8px' }}>Misi {i + 1}: {misi.title}</h4>
                   <p style={{ fontSize: 13.5, color: 'var(--desa-muted)', margin: 0, lineHeight: 1.65 }}>{misi.desc}</p>
                 </div>
               </div>
@@ -226,7 +226,7 @@ export default function PosyanduPage() {
         <section className="desa-section">
           <div className="desa-section__head">
             <span className="desa-section__label">Kader Posyandu</span>
-            <h2 className="desa-section__title">Daftar Kader ILP (Pos 1 s.d Pos 4)</h2>
+            <h2 className="desa-section__title">Daftar Kader ILP</h2>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24 }}>
@@ -271,7 +271,7 @@ export default function PosyanduPage() {
           </div>
 
           {/* Statistik Sasaran */}
-          <div className="desa-section__head">
+          <div className="desa-section__head" style={{ marginTop: 60 }}>
             <h3 className="desa-section__title" style={{ fontSize: 22 }}>Statistik Sasaran ILP</h3>
           </div>
           <div className="desa-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24 }}>
