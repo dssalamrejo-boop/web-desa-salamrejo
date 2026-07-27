@@ -11,8 +11,9 @@ export default function AdminPotensiDesa() {
   const [form, setForm] = useState({ nama: '', link: '', kategori: 'Wisata Alam', deskripsi: '', gambar: '' });
   const [previewImg, setPreviewImg] = useState('');
   const fileRef = useRef(null);
+  const [uploading, setUploading] = useState(false);
 
-  const handleImageUpload = (e) => {
+  const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
