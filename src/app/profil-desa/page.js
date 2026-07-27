@@ -65,10 +65,10 @@ export default function ProfilDesaPage() {
           }}
         >
           {[
-            { icon: '\u{1F5FA}\u{FE0F}', stat: '413 Ha', label: 'Luas Wilayah Subur' },
-            { icon: '\u{1F3D4}\u{FE0F}', stat: '300 mdpl', label: 'Ketinggian Perbukitan' },
-            { icon: '\u{1F3E1}', stat: '2 Dusun', label: 'Salamrejo & Kedungrejo' },
-            { icon: '\u{1F465}', stat: '12 RT / 3 RW', label: 'Kerukunan Kemasyarakatan' },
+            { stat: '413 Ha', label: 'Luas Wilayah Subur' },
+            { stat: '300 mdpl', label: 'Ketinggian Perbukitan' },
+            { stat: '2 Dusun', label: 'Salamrejo & Kedungrejo' },
+            { stat: '12 RT / 3 RW', label: 'Kerukunan Kemasyarakatan' },
           ].map((item, i) => (
             <div 
               key={i} 
@@ -82,14 +82,16 @@ export default function ProfilDesaPage() {
                 border: '1px solid rgba(212, 136, 42, 0.2)',
               }}
             >
-              <div style={{
-                width: 48, height: 48, borderRadius: 14,
-                background: 'rgba(212,136,42,0.12)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 24, flexShrink: 0
-              }}>
-                {item.icon}
-              </div>
+              {item.icon && (
+                <div style={{
+                  width: 48, height: 48, borderRadius: 14,
+                  background: 'rgba(212,136,42,0.12)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: 24, flexShrink: 0
+                }}>
+                  {item.icon}
+                </div>
+              )}
               <div>
                 <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--desa-ink)', lineHeight: 1.2 }}>
                   {item.stat}

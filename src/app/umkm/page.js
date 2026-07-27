@@ -46,10 +46,10 @@ export default function PotensiDesaPage() {
           }}
         >
           {[
-            { stat: items.length.toString(), label: 'Destinasi & Potensi', icon: '\u{1F3AF}' },
-            { stat: '150+', label: 'Tahun Warisan Sejarah', icon: '\u{1F3DB}\u{FE0F}' },
-            { stat: '2', label: 'Sumber Mata Air Alami', icon: '\u{1F4A7}' },
-            { stat: '50+', label: 'Tahun Motif Batik Tertua', icon: '\u{1F3A8}' },
+            { stat: items.length.toString(), label: 'Destinasi & Potensi' },
+            { stat: '150+', label: 'Tahun Warisan Sejarah' },
+            { stat: '2', label: 'Sumber Mata Air Alami' },
+            { stat: '50+', label: 'Tahun Motif Batik Tertua' },
           ].map((item, i) => (
             <div
               key={i}
@@ -63,14 +63,16 @@ export default function PotensiDesaPage() {
                 border: '1px solid rgba(212, 136, 42, 0.2)',
               }}
             >
-              <div style={{
-                width: 48, height: 48, borderRadius: 14,
-                background: 'rgba(212,136,42,0.12)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 24, flexShrink: 0
-              }}>
-                {item.icon}
-              </div>
+              {item.icon && (
+                <div style={{
+                  width: 48, height: 48, borderRadius: 14,
+                  background: 'rgba(212,136,42,0.12)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: 24, flexShrink: 0
+                }}>
+                  {item.icon}
+                </div>
+              )}
               <div>
                 <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--desa-ink)', lineHeight: 1.2 }}>
                   {item.stat}
