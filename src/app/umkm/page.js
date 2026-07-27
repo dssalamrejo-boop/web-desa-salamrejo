@@ -36,54 +36,6 @@ export default function PotensiDesaPage() {
       />
       <div className="desa-container" style={{ paddingTop: 40, paddingBottom: 60 }}>
 
-        {/* Quick Stats */}
-        <div
-          className="desa-grid"
-          style={{
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: 16,
-            marginBottom: 50,
-          }}
-        >
-          {[
-            { stat: items.length.toString(), label: 'Destinasi & Potensi' },
-            { stat: '150+', label: 'Tahun Warisan Sejarah' },
-            { stat: '2', label: 'Sumber Mata Air Alami' },
-            { stat: '50+', label: 'Tahun Motif Batik Tertua' },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="desa-glass-card"
-              style={{
-                padding: '20px 24px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 16,
-                background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(252,248,242,0.95) 100%)',
-                border: '1px solid rgba(212, 136, 42, 0.2)',
-              }}
-            >
-              {item.icon && (
-                <div style={{
-                  width: 48, height: 48, borderRadius: 14,
-                  background: 'rgba(212,136,42,0.12)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 24, flexShrink: 0
-                }}>
-                  {item.icon}
-                </div>
-              )}
-              <div>
-                <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--desa-ink)', lineHeight: 1.2 }}>
-                  {item.stat}
-                </div>
-                <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--desa-muted)', marginTop: 2 }}>
-                  {item.label}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
 
         {/* Main Content */}
         <section id="potensi" className="desa-section">

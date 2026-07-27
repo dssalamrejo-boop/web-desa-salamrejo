@@ -276,7 +276,6 @@ export default function ProfilDesaPage() {
                 </span>
                 <div className="desa-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 20 }}>
                   <div style={{ background: '#FFF', padding: 20, borderRadius: 16, border: '1px solid var(--desa-line)' }}>
-                    <div style={{ fontSize: 28, marginBottom: 8 }}>{'\u{26E9}\u{FE0F}'}</div>
                     <strong style={{ fontSize: 16, color: 'var(--desa-ink)', display: 'block', marginBottom: 6 }}>
                       Punden Mbah Salam
                     </strong>
@@ -286,7 +285,6 @@ export default function ProfilDesaPage() {
                   </div>
 
                   <div style={{ background: '#FFF', padding: 20, borderRadius: 16, border: '1px solid var(--desa-line)' }}>
-                    <div style={{ fontSize: 28, marginBottom: 8 }}>{'\u{1F4A7}'}</div>
                     <strong style={{ fontSize: 16, color: 'var(--desa-ink)', display: 'block', marginBottom: 6 }}>
                       Sendang Kedung Tirto
                     </strong>
@@ -296,7 +294,6 @@ export default function ProfilDesaPage() {
                   </div>
 
                   <div style={{ background: '#FFF', padding: 20, borderRadius: 16, border: '1px solid var(--desa-line)' }}>
-                    <div style={{ fontSize: 28, marginBottom: 8 }}>{'\u{1F333}'}</div>
                     <strong style={{ fontSize: 16, color: 'var(--desa-ink)', display: 'block', marginBottom: 6 }}>
                       Ringin Kurung Balai Desa
                     </strong>
@@ -317,41 +314,35 @@ export default function ProfilDesaPage() {
                   era: 'Abad ke-18',
                   title: 'Babat Alas & Pelarian Mataram',
                   desc: 'Rombongan pasukan Mataram yang dipimpin oleh Mbah Abdul Salam membuka barak pengungsian dan lahan pertanian di hutan yang kini menjadi Salamrejo.',
-                  icon: '\u{1FA93}'
                 },
                 {
                   era: 'Tahun 1800-an',
                   title: 'Awal Pemerintahan Desa',
                   desc: 'Bentuk pemerintahan desa dimulai, dipimpin oleh Sonodrono (anak buah Mbah Abdul Salam yang paling muda) sebagai Kepala Desa pertama.',
-                  icon: '\u{1F3DB}\u{FE0F}'
                 },
                 {
                   era: 'Sebelum Tahun 1979',
                   title: 'Era Tradisi Kuno Pamong',
                   desc: 'Pemerintahan Desa menggunakan tradisi kuno dengan sebutan petugas seperti Lurah, Carik, Kamituwo, Kebayan, Jogotirto, Jogoboyo, dan Modin.',
-                  icon: '\u{1F4DC}'
                 },
                 {
                   era: 'Pasca UU No. 5 Tahun 1979',
                   title: 'Penyeragaman Desa Nasional',
                   desc: 'Pamong desa berubah nama menjadi Kepala Desa (masa jabatan 8 tahun), Sekretaris Desa, Kaur, dan Kadus. Dibentuk lembaga Musyawarah Desa (LMD).',
-                  icon: '\u{1F4C4}'
                 },
                 {
                   era: 'UU No. 5/1999 & UU No. 32/2004',
                   title: 'Perubahan Regulasi & BPD',
                   desc: 'Masa jabatan Kades beralih ke 10 tahun kemudian 6 tahun. LMD berubah menjadi Badan Perwakilan Desa, lalu Badan Permusyawaratan Desa (BPD).',
-                  icon: '\u{2696}\u{FE0F}'
                 },
                 {
                   era: 'UU RI No. 6 Tahun 2014',
                   title: 'Era Desa Modern',
                   desc: 'Masa jabatan Kepala Desa ditetapkan 6 tahun, Sekretaris Desa diisi dari PNS Kabupaten, dan peranan penting BPD dalam musyawarah.',
-                  icon: '\u{1F4BC}'
                 },
               ].map((item, i) => (
                 <div key={i} className="desa-glass-card" style={{ padding: 28 }}>
-                  <div style={{ fontSize: 32, marginBottom: 12 }}>{item.icon}</div>
+                  {item.icon && <div style={{ fontSize: 32, marginBottom: 12 }}>{item.icon}</div>}
                   <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--desa-gold)', display: 'block', marginBottom: 4 }}>
                     {item.era}
                   </span>
