@@ -99,6 +99,10 @@ export default function AdminPengaturan() {
               <input type="text" value={form.instagram || ''} onChange={e => handleChange('instagram', e.target.value)} />
             </div>
           </div>
+          <div className="admin-form-group">
+            <label>Link Video Profil Desa (YouTube / Google Drive)</label>
+            <input type="text" value={form.videoProfil || ''} onChange={e => handleChange('videoProfil', e.target.value)} placeholder="Contoh: https://drive.google.com/..." />
+          </div>
         </div>
 
         <button type="submit" className="admin-btn admin-btn--primary" style={{ padding: '12px 28px', fontSize: 15 }}>

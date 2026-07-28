@@ -189,7 +189,15 @@ export default function HomePage() {
                 }} />
                 
                 {/* Play Button */}
-                <button style={{
+                <button 
+                  onClick={() => {
+                    if (pengaturanData?.videoProfil) {
+                      window.open(pengaturanData.videoProfil, '_blank');
+                    } else {
+                      alert('Video profil desa belum ditambahkan oleh Admin.');
+                    }
+                  }}
+                  style={{
                   position: 'relative', zIndex: 2,
                   width: 72, height: 72, borderRadius: '50%',
                   background: 'rgba(212, 136, 42, 0.9)',
