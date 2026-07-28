@@ -97,7 +97,7 @@ export default function PemerintahanPage() {
                 <img 
                   src={strukturCharts.pemerintahan} 
                   alt="Struktur Organisasi Pemerintahan Desa" 
-                  style={{ maxWidth: '100%', height: 'auto', borderRadius: 12 }} 
+                  style={{ maxWidth: 800, width: '100%', height: 'auto', borderRadius: 12, boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }} 
                 />
               </div>
             ) : (
