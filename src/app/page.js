@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import HeroBanner from '@/components/HeroBanner';
 import Link from 'next/link';
 import { useDataStore } from '@/hooks/useDataStore';
@@ -78,6 +79,7 @@ export default function HomePage() {
   const [heroData] = useDataStore('hero');
   const [pengumumanData] = useDataStore('pengumuman');
   const [pengaturanData] = useDataStore('pengaturan');
+  const [selectedPengumuman, setSelectedPengumuman] = useState(null);
 
   // Map pengumuman data
   const beritaTerbaru = (pengumumanData || [])
@@ -89,6 +91,7 @@ export default function HomePage() {
       date: item.tanggal,
       category: item.kategori,
       excerpt: item.isi ? item.isi.substring(0, 90) + '...' : 'Tidak ada keterangan.',
+      fullContent: item.isi || 'Tidak ada keterangan lebih lanjut.',
     }));
 
   return (
@@ -253,7 +256,12 @@ export default function HomePage() {
                   Belum ada informasi terbaru.
                </div>
             ) : beritaTerbaru.map((item) => (
-              <article key={item.id} className="desa-post-card">
+              <article 
+                key={item.id} 
+                className="desa-post-card" 
+                onClick={() => setSelectedPengumuman(item)}
+                style={{ cursor: 'pointer' }}
+              >
                 <div className="desa-post-card__body">
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
                     <span style={{ fontSize: 11, fontWeight: 800, color: 'var(--desa-gold)', letterSpacing: 1 }}>
@@ -353,6 +361,38 @@ export default function HomePage() {
         </section>
 
       </div>
+      {selectedPengumuman && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+          background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          zIndex: 9999, padding: 20
+        }} onClick={() => setSelectedPengumuman(null)}>
+          <div style={{
+            background: '#FFF', borderRadius: 20, width: '100%', maxWidth: 600,
+            padding: 32, position: 'relative', boxShadow: '0 24px 48px rgba(0,0,0,0.2)'
+          }} onClick={e => e.stopPropagation()}>
+            <button 
+              onClick={() => setSelectedPengumuman(null)}
+              style={{ position: 'absolute', top: 20, right: 20, background: 'var(--desa-paper)', border: 'none', width: 32, height: 32, borderRadius: 16, cursor: 'pointer', fontWeight: 700 }}
+            >
+              ✕
+            </button>
+            <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 16 }}>
+              <span style={{ fontSize: 12, fontWeight: 800, color: 'var(--desa-gold)', letterSpacing: 1 }}>
+                {(selectedPengumuman.category || 'PENGUMUMAN').toUpperCase()}
+              </span>
+              <span style={{ fontSize: 13, color: 'var(--desa-muted)' }}>{selectedPengumuman.date}</span>
+            </div>
+            <h2 style={{ fontSize: 24, fontWeight: 800, color: 'var(--desa-ink)', marginBottom: 20, lineHeight: 1.3 }}>
+              {selectedPengumuman.title}
+            </h2>
+            <div style={{ fontSize: 15, lineHeight: 1.8, color: 'var(--desa-text)', whiteSpace: 'pre-wrap' }}>
+              {selectedPengumuman.fullContent}
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
