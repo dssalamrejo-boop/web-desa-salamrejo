@@ -479,8 +479,6 @@ export default function ProfilDesaPage() {
                 {[
                   ['Luas Wilayah', '413 Ha (4,13 Km²)'],
                   ['Ketinggian Wilayah', '±300 mdpl'],
-                  ['Suhu Rata-rata', '25°C - 32°C'],
-                  ['Curah Hujan', 'Relatif Sedang/Rendah'],
                   ['Jumlah Dusun', '2 (Salamrejo & Kedungrejo)'],
                   ['Jumlah RW', '3 RW'],
                   ['Jumlah RT', '12 RT'],
