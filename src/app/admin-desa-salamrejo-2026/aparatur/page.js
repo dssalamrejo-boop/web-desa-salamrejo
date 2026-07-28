@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useDataStore } from '@/hooks/useDataStore';
 
 export default function AdminAparatur() {
@@ -7,6 +7,44 @@ export default function AdminAparatur() {
   const [showForm, setShowForm] = useState(false);
   const [editItem, setEditItem] = useState(null);
   const [form, setForm] = useState({ nama: '', jabatan: '', nip: '', foto: '', status: 'Aktif', tugas: '' });
+  const [uploading, setUploading] = useState(false);
+  const fileRef = useRef(null);
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files?.[0] || e.dataTransfer?.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      alert('Hanya file gambar yang diperbolehkan!');
+      return;
+    }
+
+    setUploading(true);
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+      
+      if (response.ok && data.success) {
+        setForm(prev => ({ ...prev, foto: data.url }));
+      } else {
+        alert(data.error || 'Gagal mengunggah gambar.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Terjadi kesalahan saat mengunggah gambar.');
+    } finally {
+      setUploading(false);
+      if (fileRef.current) fileRef.current.value = '';
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -69,8 +107,32 @@ export default function AdminAparatur() {
                 <input type="text" value={form.nip} onChange={e => setForm({...form, nip: e.target.value})} placeholder="Contoh: 19820315 200902 2 004" />
               </div>
               <div className="admin-form-group">
-                <label>URL Foto Profile</label>
-                <input type="text" value={form.foto} onChange={e => setForm({...form, foto: e.target.value})} placeholder="/images/pamong-nama.webp" />
+                <label>Foto Profile (Upload)</label>
+                <div 
+                  style={{
+                    border: '2px dashed var(--desa-line)', borderRadius: 12, padding: '16px',
+                    textAlign: 'center', cursor: 'pointer', background: form.foto ? '#F8FAFC' : '#FFF',
+                    position: 'relative', overflow: 'hidden'
+                  }}
+                  onClick={() => fileRef.current?.click()}
+                  onDragOver={(e) => { e.preventDefault(); e.stopPropagation(); }}
+                  onDrop={(e) => { e.preventDefault(); e.stopPropagation(); handleImageUpload(e); }}
+                >
+                  <input type="file" ref={fileRef} hidden accept="image/*" onChange={handleImageUpload} />
+                  {uploading ? (
+                    <div style={{ color: 'var(--desa-gold)', fontWeight: 600 }}>⏳ Mengunggah...</div>
+                  ) : form.foto ? (
+                    <div>
+                      <img src={form.foto} alt="Preview" style={{ maxWidth: '100%', maxHeight: 120, objectFit: 'contain', borderRadius: 8, marginBottom: 8 }} />
+                      <p style={{ margin: 0, fontSize: 11, color: 'var(--desa-muted)' }}>Klik atau tarik untuk mengganti foto</p>
+                    </div>
+                  ) : (
+                    <div style={{ color: 'var(--desa-muted)' }}>
+                      <div style={{ fontSize: 24, marginBottom: 4 }}>📸</div>
+                      <div style={{ fontSize: 13, fontWeight: 600 }}>Tarik foto ke sini atau klik (Maks 1MB)</div>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
             <div className="admin-form-group">
