@@ -137,6 +137,7 @@ export default function PemerintahanPage() {
                 category="APARATUR DESA"
                 description={item.tugas}
                 badgeColor={'var(--desa-gold)'}
+                photoUrl={item.foto}
               />
             ))}
           </div>
