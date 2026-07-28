@@ -160,7 +160,7 @@ export default function GaleriPage() {
               />
               <div style={{ padding: 28 }}>
                 <span style={{ fontSize: 12, fontWeight: 800, color: 'var(--desa-gold)', letterSpacing: 1 }}>
-                  {selectedImage.category.toUpperCase()} • {selectedImage.date}
+                  {(selectedImage.category || 'Galeri').toUpperCase()} • {selectedImage.date}
                 </span>
                 <h3 style={{ fontSize: 22, fontWeight: 700, color: 'var(--desa-ink)', margin: '8px 0 16px' }}>
                   {selectedImage.title}
