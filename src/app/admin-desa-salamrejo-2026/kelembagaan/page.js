@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useDataStore } from '@/hooks/useDataStore';
+import { resetData } from '@/lib/dataStore';
 
 export default function AdminKelembagaan() {
   const [data, setData] = useDataStore('kelembagaan');
@@ -41,9 +42,14 @@ export default function AdminKelembagaan() {
             Kelola organisasi dan kelembagaan masyarakat di Desa Salamrejo
           </p>
         </div>
-        <button className="admin-btn admin-btn--primary" onClick={() => { setShowForm(!showForm); setEditItem(null); setForm({ nama: '', ketua: '', anggota: '', bidang: '' }); }}>
-          {showForm ? '❌ Tutup Form' : '➕ Tambah Lembaga'}
-        </button>
+        <div style={{ display: 'flex', gap: 10 }}>
+          <button className="admin-btn admin-btn--primary" onClick={() => { setShowForm(!showForm); setEditItem(null); setForm({ nama: '', ketua: '', anggota: '', bidang: '' }); }}>
+            {showForm ? '❌ Tutup Form' : '➕ Tambah Lembaga'}
+          </button>
+          <button className="admin-btn" style={{ background: 'var(--desa-paper)' }} onClick={() => { if(confirm('Tarik data dari BAB II.txt? Data saat ini akan tertimpa.')) resetData('kelembagaan'); }}>
+            🔄 Tarik Data BAB II
+          </button>
+        </div>
       </div>
 
       {showForm && (

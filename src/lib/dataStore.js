@@ -58,11 +58,10 @@ const DEFAULTS = {
     { id: 15, dukuh: 'Dusun Kedungrejo', rw: '01', rt: '04', ketua: 'SUGITO', kontak: '' },
   ],
 
-  lembaga: [
-    { id: 1, nama: 'BPD', kepanjangan: 'Badan Permusyawaratan Desa', color: '#16A085', anggota: ['Supriyanto (Ketua)', 'Ahmad (Wakil)', 'Budi (Anggota)'] },
-    { id: 2, nama: 'LPMD', kepanjangan: 'Lembaga Pemberdayaan Masyarakat Desa', color: '#2980B9', anggota: ['Suryadi (Ketua)', 'Wawan (Anggota)'] },
-    { id: 3, nama: 'PKK', kepanjangan: 'Pemberdayaan Kesejahteraan Keluarga', color: '#8E44AD', anggota: ['Ibu Ani (Ketua)', 'Ibu Ina (Anggota)'] },
-    { id: 4, nama: 'Karang Taruna', kepanjangan: 'Karang Taruna Satya Bhakti', color: '#E67E22', anggota: ['Rizky (Ketua)', 'Deni (Anggota)'] },
+  kelembagaan: [
+    { id: 1, nama: 'BPD', ketua: "IMAM SYAFI'I", anggota: 5, bidang: 'Badan Permusyawaratan Desa' },
+    { id: 2, nama: 'LPMD', ketua: "AHMAD NOER", anggota: 5, bidang: 'Lembaga Pemberdayaan Masyarakat Desa' },
+    { id: 3, nama: 'KPM', ketua: "DEFFI RATNASARI", anggota: 1, bidang: 'Kader Pembangunan Manusia' },
   ],
 
   pengumuman: [
