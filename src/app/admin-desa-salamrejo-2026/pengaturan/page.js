@@ -1,10 +1,46 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useDataStore } from '@/hooks/useDataStore';
 
 export default function AdminPengaturan() {
   const [form, setForm] = useDataStore('pengaturan');
   const [saved, setSaved] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const fileRef = useRef(null);
+
+  const handleImageUpload = async (e) => {
+    e.preventDefault();
+    const file = e.target.files?.[0] || e.dataTransfer?.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      alert('Hanya file gambar yang diperbolehkan!');
+      return;
+    }
+
+    setUploading(true);
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await response.json();
+      if (response.ok && data.success) {
+        setForm(prev => ({ ...prev, thumbnailVideoProfil: data.url }));
+      } else {
+        alert(data.error || 'Gagal mengunggah gambar.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Terjadi kesalahan jaringan.');
+    } finally {
+      setUploading(false);
+      if (fileRef.current) fileRef.current.value = '';
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -102,6 +138,37 @@ export default function AdminPengaturan() {
           <div className="admin-form-group">
             <label>Link Video Profil Desa (YouTube / Google Drive)</label>
             <input type="text" value={form.videoProfil || ''} onChange={e => handleChange('videoProfil', e.target.value)} placeholder="Contoh: https://drive.google.com/..." />
+          </div>
+          <div className="admin-form-group" style={{ marginTop: 16 }}>
+            <label>Gambar Thumbnail Video (Drag & Drop)</label>
+            <div 
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={handleImageUpload}
+              onClick={() => fileRef.current?.click()}
+              style={{
+                border: '2px dashed #CBD5E1', padding: '32px', textAlign: 'center',
+                borderRadius: '16px', cursor: 'pointer', backgroundColor: '#F8FAFC',
+                transition: 'all 0.2s ease', position: 'relative'
+              }}
+            >
+              {uploading ? (
+                <div style={{ color: 'var(--desa-gold)', fontWeight: 600 }}>⏳ Mengunggah gambar...</div>
+              ) : form.thumbnailVideoProfil ? (
+                <img src={form.thumbnailVideoProfil} alt="Thumbnail" style={{ height: 120, borderRadius: 8, objectFit: 'cover' }} />
+              ) : (
+                <div style={{ color: '#64748B' }}>
+                  📸 Klik atau Tarik Gambar ke Sini<br/>
+                  <span style={{ fontSize: 12, opacity: 0.7 }}>(Maks 1 MB, disarankan resolusi 16:9)</span>
+                </div>
+              )}
+              <input 
+                type="file" 
+                ref={fileRef}
+                onChange={handleImageUpload} 
+                accept="image/*" 
+                style={{ display: 'none' }} 
+              />
+            </div>
           </div>
         </div>
 

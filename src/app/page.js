@@ -176,7 +176,7 @@ export default function HomePage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundImage: 'url(/images/hero-posyandu.webp)',
+                backgroundImage: `url(${pengaturanData?.thumbnailVideoProfil || '/images/hero-posyandu.webp'})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 boxShadow: '0 12px 32px rgba(18, 10, 5, 0.15)',
