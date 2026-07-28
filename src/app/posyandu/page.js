@@ -216,6 +216,7 @@ export default function PosyanduPage() {
                 badgeColor={item.badgeColor || '#2980B9'}
                 iconColor={item.iconColor || '#3498DB'}
                 desc={item.desc}
+                photoUrl={item.foto}
               />
             ))}
           </div>

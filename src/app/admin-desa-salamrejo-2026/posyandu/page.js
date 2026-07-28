@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useDataStore } from '@/hooks/useDataStore';
 
 export default function AdminPosyanduMulti() {
@@ -15,13 +15,52 @@ export default function AdminPosyanduMulti() {
   const [editItem, setEditItem] = useState(null);
 
   // Forms mapping
-  const initialFormTim = { role: '', name: '', badgeColor: '#2980B9', iconColor: '#3498DB', desc: '' };
+  const initialFormTim = { role: '', name: '', badgeColor: '#2980B9', iconColor: '#3498DB', desc: '', foto: '' };
   const initialFormPos = { pos: '', lokasi: '', kader: '' };
   const initialFormKhusus = { role: '', name: '' };
 
   const [formTim, setFormTim] = useState(initialFormTim);
   const [formPos, setFormPos] = useState(initialFormPos);
   const [formKhusus, setFormKhusus] = useState(initialFormKhusus);
+
+  const [uploading, setUploading] = useState(false);
+  const fileRef = useRef(null);
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files?.[0] || e.dataTransfer?.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      alert('Hanya file gambar yang diperbolehkan!');
+      return;
+    }
+
+    setUploading(true);
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+      
+      if (response.ok && data.success) {
+        setFormTim(prev => ({ ...prev, foto: data.url }));
+      } else {
+        alert(data.error || 'Gagal mengunggah gambar.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Terjadi kesalahan saat mengunggah gambar.');
+    } finally {
+      setUploading(false);
+      if (fileRef.current) fileRef.current.value = '';
+    }
+  };
 
   // Handlers
   const handleTabSwitch = (tab) => {
@@ -132,6 +171,34 @@ export default function AdminPosyanduMulti() {
                 <div className="admin-form-group" style={{ gridColumn: '1 / -1' }}>
                   <label>Deskripsi Tugas</label>
                   <textarea value={formTim.desc} onChange={e => setFormTim({...formTim, desc: e.target.value})} required rows="3" placeholder="Deskripsi tugas secara singkat..."></textarea>
+                </div>
+                <div className="admin-form-group" style={{ gridColumn: '1 / -1' }}>
+                  <label>Foto Profile (Upload)</label>
+                  <div 
+                    style={{
+                      border: '2px dashed var(--desa-line)', borderRadius: 12, padding: '16px',
+                      textAlign: 'center', cursor: 'pointer', background: formTim.foto ? '#F8FAFC' : '#FFF',
+                      position: 'relative', overflow: 'hidden'
+                    }}
+                    onClick={() => fileRef.current?.click()}
+                    onDragOver={(e) => { e.preventDefault(); e.stopPropagation(); }}
+                    onDrop={(e) => { e.preventDefault(); e.stopPropagation(); handleImageUpload(e); }}
+                  >
+                    <input type="file" ref={fileRef} hidden accept="image/*" onChange={handleImageUpload} />
+                    {uploading ? (
+                      <div style={{ color: 'var(--desa-gold)', fontWeight: 600 }}>⏳ Mengunggah...</div>
+                    ) : formTim.foto ? (
+                      <div>
+                        <img src={formTim.foto} alt="Preview" style={{ maxWidth: '100%', maxHeight: 120, objectFit: 'contain', borderRadius: 8, marginBottom: 8 }} />
+                        <p style={{ margin: 0, fontSize: 11, color: 'var(--desa-muted)' }}>Klik atau tarik untuk mengganti foto</p>
+                      </div>
+                    ) : (
+                      <div style={{ color: 'var(--desa-muted)' }}>
+                        <div style={{ fontSize: 24, marginBottom: 4 }}>📸</div>
+                        <div style={{ fontSize: 13, fontWeight: 600 }}>Tarik foto ke sini atau klik (Maks 1MB)</div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
