@@ -462,16 +462,6 @@ export default function ProfilDesaPage() {
           </div>
         </section>
 
-        {/* Lembaga Kemasyarakatan Desa */}
-        <section id="lembaga" className="desa-section">
-          <div className="desa-section__head">
-            <span className="desa-section__label">Kelembagaan</span>
-            <h2 className="desa-section__title">Lembaga Kemasyarakatan Desa</h2>
-            <p className="desa-section__desc" style={{ maxWidth: 800 }}>
-              Lembaga atau institusi desa merupakan wadah untuk mengemban tugas dan fungsi pemerintahan desa dalam rangka memberikan pelayanan, pemberdayaan, serta meningkatkan kesejahteraan masyarakat Desa Salamrejo.
-            </p>
-          </div>
-        </section>
 
         {/* D. Geografis & Peta Interactive */}
         <section id="geografis" className="desa-section">
